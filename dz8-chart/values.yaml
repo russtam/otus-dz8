@@ -1,0 +1,34 @@
+postgresql:
+  global:
+    postgresql:
+      auth:
+        existingSecret: "{{ .Release.Name }}-pgsecret"
+        username: rustam
+        database: dz8_base
+  metrics:
+    enabled: false
+    image:
+      repository: bitnamilegacy/postgres-exporter
+  image:
+    repository: bitnamilegacy/postgresql
+  volumePermissions:
+    image:
+      repository: bitnamilegacy/bitnami-shell
+
+metrics:
+  serviceMonitor:
+    enabled: false
+
+replicaCount: 2
+
+# This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/
+image:
+  orderServiceImage: rustamalimuradov/order-service:v7
+
+service:
+  type: ClusterIP
+  port: 8000
+  targetPort: 8000
+
+ingress:
+  enabled: true

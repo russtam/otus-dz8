@@ -1,0 +1,43 @@
+package ru.rustam.otus.storage;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.stereotype.Component;
+import ru.rustam.otus.rabbitmq.model.FailMessage;
+import ru.rustam.otus.rabbitmq.model.OrderMessage;
+import ru.rustam.otus.storage.service.StorageService;
+
+import static ru.rustam.otus.rabbitmq.configuration.QueueConst.ORDER_CREATED_QUEUE;
+import static ru.rustam.otus.storage.configuration.RabbitConfiguration.FAIL_QUEUE;
+
+@Component
+@RequiredArgsConstructor
+@Slf4j
+public class RabbitMqListener {
+
+    private final StorageService storageService;
+
+    @RabbitListener(queues = FAIL_QUEUE)
+    public void failMessageListener(FailMessage message) {
+        try {
+            log.debug("From {} received: {}", FAIL_QUEUE, message);
+            storageService.unreserveItems(message.getOrder());
+            log.info("Order with id={} is unreserved", message.getOrderId());
+        } catch (Exception e) {
+            log.error("Exception while unreserving items for order {}", message.getOrderId());
+        }
+    }
+
+    @RabbitListener(queues = ORDER_CREATED_QUEUE)
+    public void messageListener(OrderMessage message) {
+        try {
+            log.debug("From {} received: {}", ORDER_CREATED_QUEUE, message);
+            storageService.reserveItemsForOrder(message);
+            log.info("Order with id={} is reserved", message.getOrderId());
+        } catch (Exception e) {
+            log.error("Exception while reserving items for order {}", message.getOrderId());
+        }
+    }
+
+}
