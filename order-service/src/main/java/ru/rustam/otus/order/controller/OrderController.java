@@ -22,6 +22,7 @@ public class OrderController {
 
     @PostMapping("/order")
     public ResponseEntity<OrderDto> createOrder(@RequestBody OrderDto order) {
+        log.debug("createOrder: {}", order);
         var savedEntity = orderService.createOrder(ConvertUtil.convertOrder(order));
         return ResponseEntity.ok(ConvertUtil.convertOrder(savedEntity));
     }

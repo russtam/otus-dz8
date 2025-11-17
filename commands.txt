@@ -1,2 +1,3 @@
+helm install dz8 dz8-chart
 helm install dz8 dz8-chart --dry-run
 helm uninstall dz8

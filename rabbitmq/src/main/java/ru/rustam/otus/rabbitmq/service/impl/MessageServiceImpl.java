@@ -7,9 +7,11 @@ import ru.rustam.otus.rabbitmq.model.FailMessage;
 import ru.rustam.otus.rabbitmq.model.OrderMessage;
 import ru.rustam.otus.rabbitmq.service.MessageService;
 
+import static ru.rustam.otus.rabbitmq.configuration.QueueConst.COMPLETED_QUEUE;
 import static ru.rustam.otus.rabbitmq.configuration.QueueConst.FAIL_FANOUT_EXCHANGE;
 import static ru.rustam.otus.rabbitmq.configuration.QueueConst.ORDER_CREATED_QUEUE;
 import static ru.rustam.otus.rabbitmq.configuration.QueueConst.ORDER_RESERVED_QUEUE;
+import static ru.rustam.otus.rabbitmq.configuration.QueueConst.PAYMENT_COMPLETED_QUEUE;
 
 @Service
 @RequiredArgsConstructor
@@ -32,4 +34,15 @@ public class MessageServiceImpl implements MessageService {
     public void sendOrderReservedMessage(OrderMessage message) {
         rabbitTemplate.convertAndSend(ORDER_RESERVED_QUEUE, message);
     }
+
+    @Override
+    public void sendPaymentCompletedMessage(OrderMessage message) {
+        rabbitTemplate.convertAndSend(PAYMENT_COMPLETED_QUEUE, message);
+    }
+
+    @Override
+    public void completedMessage(OrderMessage message) {
+        rabbitTemplate.convertAndSend(COMPLETED_QUEUE, message);
+    }
+
 }

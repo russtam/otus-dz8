@@ -2,7 +2,7 @@ appCfgPath: ${APP_CONFIG_PATH:/config}
 
 spring:
   application:
-    name: storage-service
+    name: delivery-service
   config:
     import:
       - file:${appCfgPath}/db.yaml

@@ -29,4 +29,10 @@ public class StorageItemEntity {
     private int available;
     private int reserved;
 
+    public StorageItemEntity(String name, int available, int reserved) {
+        this.name = name;
+        this.available = available;
+        this.reserved = reserved;
+    }
+
 }

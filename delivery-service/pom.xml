@@ -9,9 +9,9 @@
         <version>v7</version>
     </parent>
 
-    <artifactId>order-service</artifactId>
+    <artifactId>delivery-service</artifactId>
     <version>v9</version>
-    <name>Order service</name>
+    <name>Delivery service</name>
 
     <dependencies>
         <dependency>
@@ -58,13 +58,6 @@
             <version>5.14.1</version>
             <scope>test</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>3.27.6</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>
@@ -106,7 +99,7 @@
                         <image>rustamalimuradov/${project.artifactId}:${project.version}</image>
                     </to>
                     <container>
-                        <mainClass>ru.rustam.otus.order.OrderServiceApp</mainClass>
+                        <mainClass>ru.rustam.otus.delivery.DeliveryServiceApp</mainClass>
                         <ports>
                             <port>8000</port>
                         </ports>

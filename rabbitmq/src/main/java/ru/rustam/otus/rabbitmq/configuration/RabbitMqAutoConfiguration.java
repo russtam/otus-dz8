@@ -14,15 +14,18 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
+import static ru.rustam.otus.rabbitmq.configuration.QueueConst.COMPLETED_QUEUE;
 import static ru.rustam.otus.rabbitmq.configuration.QueueConst.FANOUT_EXCHANGE_POSTFIX;
 import static ru.rustam.otus.rabbitmq.configuration.QueueConst.ORDER_CREATED_QUEUE;
 import static ru.rustam.otus.rabbitmq.configuration.QueueConst.ORDER_RESERVED_QUEUE;
+import static ru.rustam.otus.rabbitmq.configuration.QueueConst.PAYMENT_COMPLETED_QUEUE;
 
 @Configuration
 @ComponentScan("ru.rustam.otus.rabbitmq")
 public class RabbitMqAutoConfiguration {
 
-    private static final List<String> QUEUES = List.of(ORDER_CREATED_QUEUE, ORDER_RESERVED_QUEUE);
+    private static final List<String> QUEUES =
+            List.of(ORDER_CREATED_QUEUE, ORDER_RESERVED_QUEUE, PAYMENT_COMPLETED_QUEUE, COMPLETED_QUEUE);
 
     @Autowired
     private AmqpAdmin amqpAdmin;

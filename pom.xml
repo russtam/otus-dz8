@@ -13,7 +13,7 @@
     <artifactId>dz8parent</artifactId>
     <version>v7</version>
     <packaging>pom</packaging>
-    <name>dz8parent-project</name>
+    <name>DZ8 Parent project</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -27,6 +27,8 @@
         <module>rabbitmq</module>
         <module>order-service</module>
         <module>storage-service</module>
+        <module>billing-service</module>
+        <module>delivery-service</module>
     </modules>
 
     <dependencies>

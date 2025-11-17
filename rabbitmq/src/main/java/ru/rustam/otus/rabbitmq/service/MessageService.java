@@ -11,4 +11,7 @@ public interface MessageService {
 
     void sendOrderReservedMessage(OrderMessage message);
 
+    void sendPaymentCompletedMessage(OrderMessage message);
+
+    void completedMessage(OrderMessage message);
 }

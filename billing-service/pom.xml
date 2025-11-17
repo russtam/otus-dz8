@@ -9,15 +9,15 @@
         <version>v7</version>
     </parent>
 
-    <artifactId>order-service</artifactId>
-    <version>v9</version>
-    <name>Order service</name>
+    <artifactId>billing-service</artifactId>
+    <version>v7</version>
+    <name>Billing service</name>
 
     <dependencies>
         <dependency>
             <groupId>ru.rustam.otus</groupId>
             <artifactId>rabbitmq</artifactId>
-            <version>v8</version>
+            <version>v7</version>
         </dependency>
 
         <dependency>
@@ -56,13 +56,6 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>5.14.1</version>
-            <scope>test</scope>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>3.27.6</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -106,7 +99,7 @@
                         <image>rustamalimuradov/${project.artifactId}:${project.version}</image>
                     </to>
                     <container>
-                        <mainClass>ru.rustam.otus.order.OrderServiceApp</mainClass>
+                        <mainClass>ru.rustam.otus.billing.BillingServiceApp</mainClass>
                         <ports>
                             <port>8000</port>
                         </ports>
