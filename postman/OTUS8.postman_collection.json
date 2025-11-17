@@ -1,0 +1,74 @@
+{
+	"info": {
+		"_postman_id": "cc4b55fd-12e9-452a-9564-23370674ba3a",
+		"name": "OTUS8",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23136924"
+	},
+	"item": [
+		{
+			"name": "Create Order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var body = pm.response.json();",
+							"var orderId = body.orderId;",
+							"pm.globals.set(\"orderId\", orderId);",
+							"console.log(\"orderId: \" + orderId);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"amount\": 1280.90,\n  \"items\": [ {\"itemId\": 1,\"count\": 1}, {\"itemId\": 2, \"count\": 1} ],\n  \"deliveryAddress\": \"Санкт-Петербург, Камышовая ул., д.4, кв.5\",\n  \"contactPhone\": \"79008007060\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://arch.homework/order",
+					"protocol": "http",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://arch.homework/order/{{orderId}}",
+					"protocol": "http",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"order",
+						"{{orderId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
